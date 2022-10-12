@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./styles.css" rel="stylesheet">
+    <link href="./index.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" crossorigin="anonymous">
+    <title>移动互联网App检测系统V1.0</title>
+  </head>
+  <body>
+    <div class="contain">
+      <div class="header">
+        <div class="devices">
+          <select id="select-devices" class="label-input view">
+            <option value="请选择设备">
+              请选择设备
+            </option>
+          </select>
+          <input
+            class="label-input"
+            id="link-str"
+            type="text"
+            placeholder="请输入IP"
+          />
+        </div>
+        <div class="devices eval-devices view">
+          <button type="button" id="refresh-devices">
+            刷新域名
+          </button>
+          <button type="button" id="link-devices">
+            连接设备
+          </button>
+        </div>
+        <div class="devices">
+          <button type="button" class="devices-control">
+            设置代理
+          </button>
+        </div>
+        <div class="devices">
+          <button type="button" class="devices-control">
+            还原设置
+          </button>
+        </div>
+        <div class="devices">
+          <button
+                  type="button"
+                  class="devices-control"
+                  onclick="runDevices()"
+          >
+            启动手机
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-start">
+          <div class="content-tab">
+            <div id="tab1" class="content-item tab-active">
+              应用列表
+            </div>
+            <div id="tab2" class="content-item">
+              应用权限
+            </div>
+            <div id="tab3" class="content-item">
+              应用日志
+            </div>
+          </div>
+          <div class="content-center" style="max-height: 50%">
+            <div class="package-name">
+              <table class="package-table">
+                <tr>
+                  <th style="width: 20%">app名称</th>
+                  <th style="width: 25%">版本号</th>
+                  <th style="width: 35%">包名</th>
+                  <th style="width: 100%">权限设置</th>
+                </tr>
+                <!--  <tr>-->
+                <!--    <td><div>app名称</div></td>-->
+                <!--    <td><div>版本号fasdfasdfasdfasdfasdfasdfasdf发送到发送到阿斯顿发送到</div></td>-->
+                <!--    <td><div>包fasdfasdfasdfasdfasdfasdfasdf发送到发送到阿斯顿名</div></td>-->
+                <!--    <td><div class="package-control">权限设置</div></td>-->
+                <!--  </tr>-->
+              </table>
+            </div>
+            <div class="main-permission" style="display: none">
+              <div>包名：<span class="permission-package">tencent.com</span></div>
+              <div class="declared-list permissions-list">
+                <div class="permissions-title">敏感权限：</div>
+              </div>
+              <div class="declared-list permissions-list">
+                <div class="permissions-title">请求的权限：</div>
+              </div>
+              <div class="declared-list permissions-list">
+                <div class="permissions-title">安装权限：</div>
+              </div>
+              <div class="declared-list permissions-list">
+                <div class="permissions-title">运行时的权限：</div>
+              </div>
+            </div>
+            <div class="logcat-result" style="display: none">
+              {logcatList.map((item) => {
+                return (
+                <div class="footer-result">
+                  <div>输入：{item.adb}</div>
+                  {item.result ? <div>结果：{item.result}</div> : null}
+                  {item.error ? (
+                  <div>发生错误：{item.error.message}</div>
+                  ) : null}
+                  {item.console ? <div>输出：{item.console}</div> : null}
+                </div>
+                );
+              })}
+            </div>
+          </div>
+          <div class="content-footer">
+            <div class="content-config">
+              <img class="content-delete" src="./static/delete.png" alt="" />
+              <img class="content-stop" src="./static/stop.png" alt="" />
+            </div>
+            <div class="footer-view">
+              <div class="footer-content"></div>
+              <div class="input-view">
+                <input
+                  class="input-cmd"
+                  placeholder=""
+                  type="text"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div />
+    </div>
+    </div>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
